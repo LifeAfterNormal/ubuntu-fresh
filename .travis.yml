@@ -8,6 +8,10 @@ language: go
 go:
   - '1.5'
 
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+
 after_success:
   - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
